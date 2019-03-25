@@ -1,6 +1,6 @@
 # golang-api
 
-## Simple API with Go, RabbitMQ, MySQL and ElasticSearch
+### Simple API with Go, RabbitMQ, MySQL and ElasticSearch
 
 How to run
 - clone this repository
@@ -14,14 +14,14 @@ Progress List:
 - [x] Worker to save queued data to MySQL and ElasticSearch
 - [x] Implement goroutine when getting data and running worker
 - [x] Cache result data
-- [ ] Testing
-- [ ] Make application wait for all service in docker, right now. When all services not run and we run the API request the application will exit. So we need to re run the application again with `docker-compose up app`
+- [ ] ~~Testing~~
+- [ ] ~~Make application wait for all service in docker, right now. When all services not run and we run the API request the application will exit. So we need to re run the application again with `docker-compose up app`~~
 
 ## Request & Response Examples
 
 ### API Resources
 
-  - [GET /news/?page=1](#get-news)
+  - [GET /news/](#get-news)
   - [POST /news](#post-news)
 
 ### GET /magazines
