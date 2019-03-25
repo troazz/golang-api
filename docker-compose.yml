@@ -1,0 +1,44 @@
+version: '3'
+services:
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
+      RABBITMQ_DEFAULT_USER: "rabbitmq"
+      RABBITMQ_DEFAULT_PASS: "rabbitmq"
+      RABBITMQ_DEFAULT_VHOST: "/"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+
+  db:
+    build: "./mysql"
+    ports:
+      - "33600:3306"
+
+  elastic:
+    image: "elasticsearch:6.6.2"
+    environment:
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - 9200:9200
+
+  app:
+    build: "./app"
+    volumes:
+      - ./app/src:/go/src/app
+    working_dir: /go/src/app
+    links:
+      - db
+      - elastic
+      - rabbitmq
+    ports:
+      - "3030:3001"
+    environment:
+      PORT: 3001
