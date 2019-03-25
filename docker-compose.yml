@@ -1,7 +1,7 @@
 version: '3'
 services:
   rabbitmq:
-    image: "rabbitmq:3-management"
+    image: "rabbitmq:3-alpine"
     environment:
       RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
       RABBITMQ_DEFAULT_USER: "rabbitmq"
@@ -42,3 +42,4 @@ services:
       - "3030:3001"
     environment:
       PORT: 3001
+      GIN_MODE: "release"

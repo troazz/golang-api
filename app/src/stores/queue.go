@@ -72,7 +72,7 @@ func Queue(qName string, data interface{}) error {
 		return errors.New("RMQ: Failed to publish")
 	}
 
-	log.Printf("Queued: %s\n", data)
+	log.Printf("News queued\n")
 
 	return nil
 }
